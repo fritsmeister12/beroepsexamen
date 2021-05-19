@@ -72,6 +72,9 @@ if($level != 0){
                                 <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
                                     Tot (tijd)
                                 </th>
+                                <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                                    Aanmelden
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,6 +95,8 @@ if($level != 0){
 
                                         echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["tot"] ."</p></td>";
 
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='whitespace-no-wrap font-bold' style='color: #a7c7e7'><a href='../controller/SignupController.php?id=". $row["id"] ."'>Klik hier!</a></p></td>";
+
                                         echo "</tr>";
                                     }
                                 } else {
@@ -102,6 +107,7 @@ if($level != 0){
                             ?>
                         </tbody>
                     </table>
+                <a href="welcome.php" class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
         </div>
     </div>
 </body>
