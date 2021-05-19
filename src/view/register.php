@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-<title>Welkom 👋!</title>
+<title>De Klapschaats ⛸!</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -33,7 +33,7 @@
     <form action="../controller/RegisterController.php" method="post">
         <div class="grid min-h-screen place-items-center">
             <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow-md">
-                <h1 class="text-xl font-semibold">Hallo daar 👋, <span class="font-normal">vul hier jou gegevens in om verder te gaan!</span></h1>
+                <h1 class="text-xl font-semibold"><span style="color: #FAA0A0">De Klapschaats</span> ⛸, <span class="font-normal">vul hier jou gegevens in om verder te gaan!</span></h1>
                 <form class="mt-8" action="src/Controller/RegisterController.php" method="post">
                     <span class="w-full">
                     <label for="naam" class="block text-xs font-semibold text-gray-600 uppercase">Naam</label>

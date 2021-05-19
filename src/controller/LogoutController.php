@@ -1,5 +1,5 @@
 <?php
 session_start();
 session_destroy();
-// Redirect to the login page:
+// Terug sturen naar de login pagina:
 header('Location: ../view/login.php');
