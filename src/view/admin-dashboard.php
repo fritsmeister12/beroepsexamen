@@ -1,11 +1,11 @@
- <?php 
+<?php 
 require '../config/config.php';
 
 // Data uit database halen om het te gaan gebruiken
-$stmt = $con->prepare('SELECT naam, level FROM gebruikers WHERE id = ?');
+$stmt = $con->prepare('SELECT level FROM gebruikers WHERE id = ?');
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($naam, $level);
+$stmt->bind_result($level);
 $stmt->fetch();
 $stmt->close();
 
@@ -15,8 +15,8 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-if($level != 0){
-    header('Location: admin-dashboard.php');
+if($level != 1){
+    header('Location: dashboard.php');
     exit;
 } 
 
@@ -55,17 +55,59 @@ if($level != 0){
     <div class="grid min-h-screen place-items-center">
         <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow-md">
         
-            <h1 class="text-xl font-semibold">Welkom <span style="color: #a7c7e7"><?= $naam ?></span> bij <span style="color: #FAA0A0">De Klapschaats</span> ⛸!</h1>
+            <h1 class="text-xl font-semibold">Welkom bij <span style="color: #FAA0A0">De Klapschaats</span> ⛸!</h1>
             
-            <!-- Buttons -->
-            <div class="flex gap-4">
-                <a href="dashboard.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white text-center uppercase shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none bg-pastel-blue">
-                    Tijdsloten
-                </a>
-                <a href="../controller/LogoutController.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-pastel-blue shadow-lg text-center focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                    Uitloggen
-                </a>
-            </div>
+            <table class="leading-normal w-full mt-4">
+                        <thead>
+                            <tr>
+                                <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                                    ID
+                                </th>
+                                <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                                    Datum
+                                </th>
+                                <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                                    Vanaf (tijd)
+                                </th>
+                                <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                                    Tot (tijd)
+                                </th>
+                                <th class="px-3 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-bold text-black uppercase tracking-wider">
+                                    Acties
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                $sql = 'SELECT * FROM tijdsloten';
+                                $result = $con->query($sql);
+                                
+                                if ($result->num_rows > 0) {
+                                    // Data uitlezen voor elke rij
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["id"] ."</p></td>";
+
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["datum"] ."</p></td>";
+
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["van"] ."</p></td>";
+
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["tot"] ."</p></td>";
+
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='whitespace-no-wrap font-bold'><a href='update.php?id=". $row['id'] ."' style='color: #FFBF00'>Aanpassen</a><br><a href='../controller/DeleteController.php?id=". $row['id'] ."' style='color: #FAA0A0'>Verwijderen</a></p></td>";
+
+                                        echo "</tr>";
+                                    }
+                                } else {
+                                    echo "0 results";
+                                }
+
+                                $con->close();
+                            ?>
+                        </tbody>
+                    </table>
+                <a href="welcome.php" class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
         </div>
     </div>
 </body>
