@@ -1,49 +1,33 @@
 <?php
+// Hiermee wordt er een connectie naar de database gemaakt.
+require '../config/config.php';
 
-// require '../config/config.inc.php';
 
-
-// $to      = '83238@glr.nl';
-// $subject = 'Verification';
-// $message = "Verify\n\nhttps://matthewgroenendijk/oefenexamen/src/Controller/VerifyController.php?id='$id'";
-// $headers = 'From: matthew@loopreizen.nl' . "\r\n" .
-//     'Reply-To: matthew@loopreizen.nl' . "\r\n" .
-//     'X-Mailer: PHP/' . phpversion();
-
-// mail($to, $subject, $message, $headers);
-
-require '../config/config.inc.php';
 
 // Escape user inputs voor veilighied tegen sql injection
-$studentnummer = mysqli_real_escape_string($con, $_POST['studentnummer']);
-$klas = mysqli_real_escape_string($con, $_POST['klas']);
-$voornaam = mysqli_real_escape_string($con, $_POST['voornaam']);
-$achternaam = mysqli_real_escape_string($con, $_POST['achternaam']);
+$naam = mysqli_real_escape_string($con, $_POST['naam']);
 $adres = mysqli_real_escape_string($con, $_POST['adres']);
-$postcode = mysqli_real_escape_string($con, $_POST['postcode']);
-$woonplaats = mysqli_real_escape_string($con, $_POST['woonplaats']);
-$leeftijd = mysqli_real_escape_string($con, $_POST['leeftijd']);
+$plaats = mysqli_real_escape_string($con, $_POST['plaats']);
 $email = mysqli_real_escape_string($con, $_POST['email']);
+$telefoonnummer = mysqli_real_escape_string($con, $_POST['telefoonnummer']);
 $wachtwoord = mysqli_real_escape_string($con, $_POST['wachtwoord']);
 
 $wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 
-// Random verify code aanmaken
-$vkey = md5(time().$studentnummer);
 
 // Proberen de sql in de database toe te voegen
-$sql = "INSERT INTO users (id, studentnummer, klas, voornaam, achternaam, adres, postcode, woonplaats, leeftijd, email, wachtwoord, level, geverifieerd, vkey) VALUES (NULL, '$studentnummer', '$klas', '$voornaam', '$achternaam', '$adres', '$postcode', '$woonplaats', '$leeftijd', '$email', '$wachtwoord', '0', '0', '$vkey')";
+$sql = "INSERT INTO gebruikers (id, naam, adres, plaats, email, telefoonnummer, wachtwoord, level) VALUES (NULL, '$naam', '$adres', '$plaats', '$email', '$telefoonnummer', '$wachtwoord', '0')";
 if (mysqli_query($con, $sql)) {
-    $to      = $email;
-    $subject = 'Verificatie';
-    $message = "<a href='oefenexamen.matthewgroenendijk.com/src/Controller/VerifyController.php?vkey=".$vkey."'>Verifieer hier!</a>";
-    $headers = 'From: verify@glr.nl' . "\r\n" .
-        'Reply-To: verify@glr.nl' . "\r\n" .
-        'X-Mailer: PHP/' . phpversion();
+    // $to      = $email;
+    // $subject = 'Verificatie';
+    // $message = "<a href='oefenexamen.matthewgroenendijk.com/src/Controller/VerifyController.php?vkey=".$vkey."'>Verifieer hier!</a>";
+    // $headers = 'From: verify@glr.nl' . "\r\n" .
+    //     'Reply-To: verify@glr.nl' . "\r\n" .
+    //     'X-Mailer: PHP/' . phpversion();
 
-    mail($to, $subject, $message, $headers);
+    // mail($to, $subject, $message, $headers);
 
-    header('Location: ../View/verify.php');
+    header('Location: ../view/login.php');
     exit;
 } else {
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);

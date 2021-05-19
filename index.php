@@ -39,7 +39,7 @@
                 <a href="src/view/login.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white text-center uppercase shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none bg-pastel-blue">
                     Login
                 </a>
-                <a href="src/view/registreren.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-pastel-blue shadow-lg text-center focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                <a href="src/view/registrer.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-pastel-blue shadow-lg text-center focus:outline-none hover:bg-gray-900 hover:shadow-none">
                     Registreren
                 </a>
             </div>

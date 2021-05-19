@@ -24,7 +24,9 @@
     </style>
 </head>
 <body class="bg">
-    <form action="../Controller/RegisterController.php" method="post">
+
+    <!-- Registreer formulier -->
+    <form action="../controller/RegisterController.php" method="post">
         <div class="grid min-h-screen place-items-center">
             <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow-md">
                 <h1 class="text-xl font-semibold">Hallo daar 👋, <span class="font-normal">vul hier jou gegevens in om verder te gaan!</span></h1>
