@@ -1,28 +1,26 @@
 <?php
 require '../config/config.php';
 
-// Now we check if the data from the login form was submitted, isset() will check if the data exists.
+// Kijken of de data die is ingevoerd in de database bestaat door de issset()
 if (!isset($_POST['email'], $_POST['wachtwoord'])) {
-    // Could not get the data that should have been sent.
+    // Kan de data niet ophalen
     exit('Vul de email en wachtwoord in!');
 }
 
-// Prepare our SQL, preparing the SQL statement will prevent SQL injection.
+// De SQL voorbereiden, om SQL injection tegen te gaan
 if ($stmt = $con->prepare('SELECT id, wachtwoord FROM gebruikers WHERE email = ?')) {
-    // Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+    // Paramenters binden aan elkaar
     $stmt->bind_param('s', $_POST['email']);
     $stmt->execute();
-    // Store the result so we can check if the account exists in the database.
+    // Gegevens opslaan om te kijken of de data bestaat
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $password);
         $stmt->fetch();
-        // Account exists, now we verify the password.
-        // Note: remember to use password_hash in your registration file to store the hashed passwords.
+        // Account bestaat en nu wordt het bevestigd
         if (password_verify($_POST['wachtwoord'], $password)) {
-            // Verification success! User has loggedin!
-            // Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
+            // Door een sessie aan te maken weet de gebruiker dat hij ingelogd is
             session_regenerate_id();
             $_SESSION['loggedin'] = TRUE;
             $_SESSION['name'] = $_POST['email'];

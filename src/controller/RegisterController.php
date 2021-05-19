@@ -18,20 +18,11 @@ $wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
 // Proberen de sql in de database toe te voegen
 $sql = "INSERT INTO gebruikers (id, naam, adres, plaats, email, telefoonnummer, wachtwoord, level) VALUES (NULL, '$naam', '$adres', '$plaats', '$email', '$telefoonnummer', '$wachtwoord', '0')";
 if (mysqli_query($con, $sql)) {
-    // $to      = $email;
-    // $subject = 'Verificatie';
-    // $message = "<a href='oefenexamen.matthewgroenendijk.com/src/Controller/VerifyController.php?vkey=".$vkey."'>Verifieer hier!</a>";
-    // $headers = 'From: verify@glr.nl' . "\r\n" .
-    //     'Reply-To: verify@glr.nl' . "\r\n" .
-    //     'X-Mailer: PHP/' . phpversion();
-
-    // mail($to, $subject, $message, $headers);
-
     header('Location: ../view/login.php');
     exit;
 } else {
     echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
 }
 
-// Close connection
+// Sluit connectiie
 mysqli_close($con);
