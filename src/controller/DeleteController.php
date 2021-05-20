@@ -5,7 +5,6 @@ require '../config/config.php';
 // De id ophalen uit de url
 $id = $_GET['id'];
 
-
 // SQL query voorbereiden voordat hij gebruikt wordt
 $sql = "DELETE FROM tijdsloten WHERE tijdsloten.id = $id";
 

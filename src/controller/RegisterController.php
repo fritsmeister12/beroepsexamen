@@ -2,8 +2,6 @@
 // Hiermee wordt er een connectie naar de database gemaakt.
 require '../config/config.php';
 
-
-
 // Escape user inputs voor veilighied tegen sql injection
 $naam = mysqli_real_escape_string($con, $_POST['naam']);
 $adres = mysqli_real_escape_string($con, $_POST['adres']);
@@ -22,7 +20,6 @@ if ($lid == 'on') {
 
 // Hier wordt het ingevoerde wachtwoord beveiligd via de hash
 $wachtwoord = password_hash($wachtwoord, PASSWORD_DEFAULT);
-
 
 // Proberen de sql in de database toe te voegen
 $sql = "INSERT INTO gebruikers (id, naam, adres, plaats, email, telefoonnummer, wachtwoord, lid, level) VALUES (NULL, '$naam', '$adres', '$plaats', '$email', '$telefoonnummer', '$wachtwoord', '$lid', '0')";
