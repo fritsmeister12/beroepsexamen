@@ -17,7 +17,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 // Als de gebruiker  admin rechten heeft wordt hij gestuurd naar de admin dashboard
 if($level != 0){
-    header('Location: AdminDashboard.php');
+    header('Location: admin-dashboard.php');
     exit;
 } 
 

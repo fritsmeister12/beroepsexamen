@@ -32,7 +32,8 @@ if (mysqli_query($con, $sql)) {
     exit;
 } else {
     // Als iets niet goed gaat krijg je een error melding
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($con);
+    echo "Helaas er is wat mis gegaan!
+    <a href='../../index.php'>Klik hier om terug te gaan!</a>";
 }
 
 // Sluit connectiie

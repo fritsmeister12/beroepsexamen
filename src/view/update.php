@@ -71,7 +71,7 @@ if($level != 1){
 
         <div class="grid min-h-screen place-items-center">
             <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow-md">
-                <h1 class="text-xl font-semibold"><span style="color: #FAA0A0">De Klapschaats</span> ⛸, <span class="font-normal">vul hier jou gegevens in om verder te gaan!</span></h1>
+                <h1 class="text-xl font-semibold"><span style="color: #FAA0A0">De Klapschaats</span> ⛸, <span class="font-normal">pas hier tijdslot <?= $id ?> aan!</span></h1>
                 <form class="mt-8" action="src/Controller/RegisterController.php" method="post">
                     <span class="w-full">
                         <label for="datum" class="block text-xs mt-4 font-semibold text-gray-600 uppercase">Datum</label>

@@ -99,9 +99,9 @@ if($level != 1){
                                         echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["tot"] ."</p></td>";
 
                                         echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='whitespace-no-wrap font-bold'>
-                                        <a href='show.php?id=". $row['id'] ."' style='color: green'>Overzicht</a><br>
-                                        <a href='../controller/DeleteController.php?id=". $row['id'] ."' style='color: #FAA0A0'>Verwijderen</a><br>
-                                        <a href='update.php?id=". $row['id'] ."' style='color: #FFBF00'>Aanpassen</a></p></td>";
+                                        <a href='show.php?id=". $row['id'] ."' class='text-green-600'>Overzicht</a><br>
+                                        <a href='update.php?id=". $row['id'] ."' class='text-yellow-500'>Aanpassen</a><br>
+                                        <a href='../controller/DeleteController.php?id=". $row['id'] ."' class='text-red-600'>Verwijderen</a></p></td>";
 
                                         echo "</tr>";
                                     }
@@ -115,7 +115,7 @@ if($level != 1){
                             ?>
                         </tbody>
                     </table>
-                <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 sm:items-baseline w-full">
+                <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between mt-4 sm:items-baseline w-full">
                     <div class="mb-2 sm:mb-0">
                         <a href="welcome.php" class="text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
                     </div>
