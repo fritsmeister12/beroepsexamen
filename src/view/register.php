@@ -55,13 +55,17 @@
                             <input id="email" type="email" name="email" placeholder="83238@glr.nl" autocomplete="email" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
                         </span>
                         <span class="w-1/2">
-                            <label for="telefoon" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Telefoon</label>
-                            <input id="telefoon" type="tel" name="telefoon" placeholder="06123456789" pattern="[0-9]{10}" autocomplete="telefoon" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                            <label for="telefoonnummer" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Telefoonnummer</label>
+                            <input id="telefoonnummer" type="tel" name="telefoonnummer" placeholder="06123456789" pattern="[0-9]{10}" autocomplete="telefoonnummer" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
                         </span>
                     </div>
                     
                     <label for="wachtwoord" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Wachtwoord</label>
                     <input id="wachtwoord" type="password" name="wachtwoord" placeholder="********" autocomplete="wachtwoord" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+
+                    <label for="lid" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Schaatslid?</label>
+                    <input id="lid" type="checkbox" name="lid"  autocomplete="lid" checked/>
+
                     <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                         Aanmelden
                     </button>
