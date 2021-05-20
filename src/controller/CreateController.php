@@ -5,7 +5,7 @@ require '../config/config.php';
 // Escape user inputs voor veilighied tegen sql injection
 $datum = mysqli_real_escape_string($con, $_POST['datum']);
 $van = mysqli_real_escape_string($con, $_POST['van']);
-$tot = mysqli_real_escape_string($con, $_POST['tot']);
+$tot = mysqli_real_escape_string($con, $_COOKIE['tot']);
 
 // kijken of de aangemaakte tijdslot online of offline is
 $offline = mysqli_real_escape_string($con, $_POST['offline']);

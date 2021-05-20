@@ -105,7 +105,26 @@ if($level != 1){
                 time2 = "01:30:00";
 
                 valueSpan.value = formatTime(timestrToSec(time1) + timestrToSec(time2));
+
+                // Hier wordt de cookie functie aangeroepen
+                createCookie("tot", formatTime(timestrToSec(time1) + timestrToSec(time2)), "10");
             }, false);
+            
+            // Hier wordt er een cookie aangemaakt om de data op te slaan in de database die uitgerekend is
+            function createCookie(name, value, days) {
+                var expires;
+
+                if (days) {
+                    var date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toGMTString();
+                }
+                else {
+                    expires = "";
+                }
+
+                document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+            }
         </script>
 </body>
 </html>
