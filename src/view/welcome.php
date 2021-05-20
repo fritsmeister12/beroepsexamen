@@ -1,19 +1,6 @@
- <?php 
-require '../config/config.php';
-
-// Data uit database halen om het te gaan gebruiken
-$stmt = $con->prepare('SELECT naam, level FROM gebruikers WHERE id = ?');
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($naam, $level);
-$stmt->fetch();
-$stmt->close();
-
-// Als de gebruiker niet ingelogd is wordt hij doorverwezen naar de login pagina
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
+<?php 
+// De login check bestand aanroepen
+require '../controller/LoginCheck.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +28,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <a href="dashboard.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white text-center uppercase shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none bg-pastel-blue">
                     Tijdsloten
                 </a>
-                <a href="../controller/LogoutController.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-pastel-blue shadow-lg text-center focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                <a href="../controller/LogoutController.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg text-center focus:outline-none hover:bg-gray-900 hover:shadow-none">
                     Uitloggen
                 </a>
             </div>

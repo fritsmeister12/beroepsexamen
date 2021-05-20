@@ -1,20 +1,6 @@
 <?php 
-// Hiermee wordt er een connectie naar de database gemaakt.
-require '../config/config.php';
-
-// Data uit database halen om het te gaan gebruiken
-$stmt = $con->prepare('SELECT level FROM gebruikers WHERE id = ?');
-$stmt->bind_param('i', $_SESSION['id']);
-$stmt->execute();
-$stmt->bind_result($level);
-$stmt->fetch();
-$stmt->close();
-
-// Als de gebruiker niet ingelogd is wordt hij doorverwezen naar de login pagina
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
+// De login check bestand aanroepen
+require '../controller/LoginCheck.php';
 
 // Als de gebruiker geen admin rechten heeft wordt hij terug gestuurd naar de normale dashboard
 if($level != 1){

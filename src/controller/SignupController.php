@@ -75,7 +75,7 @@ if ($result->num_rows < 99) {
         mail($to, $subject, $message, $headers);
 
         // Je wordy terug gesturud naar het beginscherm als het gelukt is
-        header('Location: ../view/welcome.php');
+        header('Location: ../view/succes.php');
         exit;
     } else {
         // Als de gebruiker zich al aangemeld heeft krijg hij dit bericht te zien
