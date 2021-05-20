@@ -74,17 +74,21 @@ if ($result->num_rows < 99) {
         // Hier versturen we de mail
         mail($to, $subject, $message, $headers);
 
-        // Hier wordt je terug gestuurd naar het beginscherm als het gelukt is
+        // Je wordy terug gesturud naar het beginscherm als het gelukt is
         header('Location: ../view/welcome.php');
         exit;
     } else {
         // Als de gebruiker zich al aangemeld heeft krijg hij dit bericht te zien
-        echo "Je hebt je al aangemeld! Meld je af via de link in je mail.<br><a href='../view/dashboard.php'>Klik hier om terug te gaan!</a>";
+        // echo "Je hebt je al aangemeld! Meld je af via de link in je mail.<br><a href='../view/dashboard.php'>Klik hier om terug te gaan!</a>";
+        // Hier wordt je terug gestuurd naar als je je al aangemeld heb voor een tijdslot
+        header('Location: ../view/pages/already.php');
+        exit;
     }
 } else {
     // Teveel mensen hebben zich aangemeld
-    echo 'Helaas zit dit tijdslot vol. Kies een andere.<br>
-    <a href="../view/dashboard.php">Klik hier om terug te gaan!</a>';
+    // Hier wordt je terug gestuurd naar als het vol zit is
+    header('Location: ../view/pages/full.php');
+    exit;
 }
 
 ?>
