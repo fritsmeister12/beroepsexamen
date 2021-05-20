@@ -7,7 +7,7 @@ $id = $_GET['id'];
 
 
 // SQL query voorbereiden voordat hij gebruikt wordt
-$sql = "DELETE FROM tijdslot_gebruikers WHERE gebruikers_id = $id";
+$sql = "DELETE FROM tijdslot_gebruikers WHERE id_gebruiker = $id";
 
 // Proberen de sql in de database toe te voegen
 if (mysqli_query($con, $sql)) {
