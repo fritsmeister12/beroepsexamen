@@ -55,7 +55,7 @@ if($level != 1){
                         </span>
                         <span class="w-1/2">
                             <label for="tot" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Tot</label>
-                            <input id="tot" type="time" name="tot" placeholder="16:00" min="09:00" max="21:00" autocomplete="tot" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                            <input id="tot" type="time" name="tot" placeholder="16:00" min="09:00" max="21:00" autocomplete="tot" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 cursor-not-allowed focus:shadow-inner" required disabled/>
                         </span>
                     </div>
 
@@ -70,5 +70,42 @@ if($level != 1){
                 </form>
             </div>
         </div>
+        <script>
+            // Hier worden de gegevens en input velden opgehaald
+            var startTime = document.getElementById("van");
+            var valueSpan = document.getElementById("tot");
+            
+            // Hier worden de tijden omgezeten naar secondes om vervolgens weer terug te rekenen
+            function timestrToSec(timestr) {
+                var parts = timestr.split(":");
+                return (parts[0] * 3600) +
+                        (parts[1] * 60) +
+                        (+parts[2]);
+                }
+
+                function pad(num) {
+                if(num < 10) {
+                    return "0" + num;
+                } else {
+                    return "" + num;
+                }
+            }
+            
+            // Hier worden de secondes weer terug gerekend naar uren
+            function formatTime(seconds) {
+            return [pad(Math.floor(seconds/3600)),
+                    pad(Math.floor(seconds/60)%60),
+                    pad(seconds%60),
+                    ].join(":");
+            }
+
+            // Hier wordt de geformateerde variables in de values van de inputs gezet
+            startTime.addEventListener("input", function() {
+                time1 = startTime.value + ":00";
+                time2 = "01:30:00";
+
+                valueSpan.value = formatTime(timestrToSec(time1) + timestrToSec(time2));
+            }, false);
+        </script>
 </body>
 </html>
