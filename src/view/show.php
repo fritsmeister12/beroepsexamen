@@ -38,7 +38,7 @@ if($level != 1){
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="bg">
@@ -92,7 +92,7 @@ if($level != 1){
                                         echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["lid"] ."</p></td>";
 
                                         echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='whitespace-no-wrap font-bold'>
-                                        <a href='../controller/DeleteController.php?id=". $row['id'] ."' class='text-red-600'>Verwijderen</a></p></td>";
+                                        <a href='../controller/DeleteUserController.php?id=". $row['id'] ."' class='text-red-600'>Verwijderen</a></p></td>";
 
                                         echo "</tr>";
                                     }
@@ -108,7 +108,7 @@ if($level != 1){
                     </table>
                 <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between mt-4 sm:items-baseline w-full">
                     <div class="mb-2 sm:mb-0">
-                        <a href="welcome.php" class="text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
+                        <a href="admin-dashboard.php" class="text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
                     </div>
                 </nav>
         </div>

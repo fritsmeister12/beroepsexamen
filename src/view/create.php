@@ -34,7 +34,7 @@ if($level != 1){
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg">
 
@@ -58,7 +58,12 @@ if($level != 1){
                             <input id="tot" type="time" name="tot" placeholder="16:00" min="09:00" max="21:00" autocomplete="tot" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
                         </span>
                     </div>
-                    <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+
+                    <!-- Offline checkbox -->
+                    <label for="offline" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Inschrijfmoment gesloten?</label>
+                    <input type="checkbox" name="offline" id="offline">
+
+                    <button type="submit" class="w-full py-3 mt-4 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                         Aanmaken
                     </button>
                     <a href="admin-dashboard.php" class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>

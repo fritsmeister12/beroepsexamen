@@ -8,9 +8,18 @@ $van = mysqli_real_escape_string($con, $_POST['van']);
 $tot = mysqli_real_escape_string($con, $_POST['tot']);
 $id = mysqli_real_escape_string($con, $_POST['id']);
 
+// kijken of de aangemaakte tijdslot online of offline is
+$offline = mysqli_real_escape_string($con, $_POST['offline']);
+
+// antwoord van de checkoverzichtelijker maken 
+if ($offline == 'on') {
+    $offline = 'ja';
+} else {
+    $offline = 'nee';
+}
 
 // SQL query voorbereiden voordat hij gebruikt wordt
-$sql = "UPDATE tijdsloten SET datum = '$datum', van = '$van', tot = '$tot' WHERE tijdsloten.id = $id";
+$sql = "UPDATE tijdsloten SET datum = '$datum', van = '$van', tot = '$tot', offline = '$offline' WHERE tijdsloten.id = $id";
 
 // Proberen de sql in de database toe te voegen
 if (mysqli_query($con, $sql)) {

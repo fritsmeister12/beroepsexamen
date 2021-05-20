@@ -2,6 +2,20 @@
 // Hiermee wordt er een connectie naar de database gemaakt.
 require '../config/config.php';
 
+// Tijdsloten Data uit database halen om het te gaan gebruiken
+$stmt = $con->prepare('SELECT offline FROM tijdsloten WHERE id = ?');
+$stmt->bind_param('i', $_GET['id']);
+$stmt->execute();
+$stmt->bind_result($offline);
+$stmt->fetch();
+$stmt->close();
+
+// Als de tijdslot op offline staat wordt de gebruiker terug gestuurd naar de normale dashboard
+if($offline == 'ja'){
+    header('Location: ../view/dashboard.php');
+    exit;
+} 
+
 // De id van de gebruiker die ingelogd is via een session
 $gebruiker = $_SESSION['id'];
 

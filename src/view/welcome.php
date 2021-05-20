@@ -27,7 +27,7 @@ if (!isset($_SESSION['loggedin'])) {
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body class="bg">

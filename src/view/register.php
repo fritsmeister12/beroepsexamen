@@ -10,7 +10,7 @@
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="bg">
 
@@ -48,10 +48,10 @@
                     <label for="wachtwoord" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Wachtwoord</label>
                     <input id="wachtwoord" type="password" name="wachtwoord" placeholder="********" autocomplete="wachtwoord" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
 
-                    <label for="lid" class="block mt-2 text-xs font-semibold text-gray-600 uppercase">Schaatslid?</label>
+                    <label for="lid" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Schaatslid?</label>
                     <input id="lid" type="checkbox" name="lid"  autocomplete="lid" checked/>
 
-                    <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                    <button type="submit" class="w-full py-3 mt-4 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                         Aanmelden
                     </button>
                     <a href="login.php" class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Al geregistreerd?</a>
