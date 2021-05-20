@@ -13,6 +13,7 @@ $telefoonnummer = mysqli_real_escape_string($con, $_POST['telefoonnummer']);
 $wachtwoord = mysqli_real_escape_string($con, $_POST['wachtwoord']);
 $lid = mysqli_real_escape_string($con, $_POST['lid']);
 
+// Kijk of de gebruiker een lid is, en het omzetten naar 'ja' of 'nee'
 if ($lid == 'on') {
     $lid = 'ja';
 } else {
