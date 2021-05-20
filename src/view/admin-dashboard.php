@@ -1,4 +1,5 @@
 <?php 
+// Hiermee wordt er een connectie naar de database gemaakt.
 require '../config/config.php';
 
 // Data uit database halen om het te gaan gebruiken
@@ -15,6 +16,7 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
+// Als de gebruiker geen admin rechten heeft wordt hij terug gestuurd naar de normale dashboard
 if($level != 1){
     header('Location: dashboard.php');
     exit;
@@ -79,6 +81,7 @@ if($level != 1){
                         </thead>
                         <tbody>
                             <?php
+                                // Via een sql de data ophalen uit de database
                                 $sql = 'SELECT * FROM tijdsloten';
                                 $result = $con->query($sql);
                                 
@@ -100,14 +103,23 @@ if($level != 1){
                                         echo "</tr>";
                                     }
                                 } else {
+                                    // Geen resultaten
                                     echo "0 results";
                                 }
 
+                                // Connectie afsluiten
                                 $con->close();
                             ?>
                         </tbody>
                     </table>
-                <a href="welcome.php" class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
+                <nav class="font-sans flex flex-col text-center sm:flex-row sm:text-left sm:justify-between py-4 px-6 sm:items-baseline w-full">
+                    <div class="mb-2 sm:mb-0">
+                        <a href="welcome.php" class="text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
+                    </div>
+                    <div>
+                        <a href="create.php" class="text-xs text-gray-500 cursor-pointer hover:text-black">Nieuw tijdslot</a>
+                    </div>
+                </nav>
         </div>
     </div>
 </body>

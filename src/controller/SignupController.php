@@ -1,20 +1,35 @@
 <?php
+// Hiermee wordt er een connectie naar de database gemaakt.
 require '../config/config.php';
 
+// De id van de gebruiker die ingelogd is via een session
 $gebruiker = $_SESSION['id'];
+
+// De id van de tijdslot die is meegegeven via de url
 $tijdslot = $_GET['id'];
+
+// Het email adres van de ingelogde gebruiker via een aangemaakte session
 $email = $_SESSION['name'];
 
+// Een standaard link voor de mailer 
 $site = '83238.ict-lab.nl/beroepsexamen';
 
+// SQL query voorbereiden voordat hij gebruikt wordt
 $sql = "INSERT INTO `tijdslot_gebruikers` (`id_tijdslot`, `id_gebruiker`) VALUES ('$tijdslot', '$gebruiker');";
+
+// Hier proberen wij een connectie te maken met de database en kijken of we wat vinden
 if (mysqli_query($con, $sql)) {
 
+    // Hier wordt een random getal aangemaakt als bevestigings code
     $num = str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
 
+    // Waar de mail naartoe moet
     $to      = $_SESSION['name'];
+
+    // Onderwerp van de mail
     $subject = 'Bevestiging van aanmelding!';
-    // Message
+
+    // Bericht voor de mail
     $message = '
     <html>
     <head>
@@ -27,17 +42,22 @@ if (mysqli_query($con, $sql)) {
     </body>
     </html>
     ';
+
+    // Informatie wat mee moet gestuurd worden in de mail zoals van wie het gestuurd wordt
     $headers = 'From: klapschaats@glr.nl' . "\r\n" .
         'Reply-To: no-klapschaats@glr.nl' . "\r\n" .
         'Content-type: text/html; charset=iso-8859-1'. 
         'MIME-Version: 1.0' .
         'X-Mailer: PHP/' . phpversion();
 
+    // Hier versturen we de mail
     mail($to, $subject, $message, $headers);
 
+    // Hier wordt je terug gestuurd naar het beginscherm als het gelukt is
     header('Location: ../view/welcome.php');
     exit;
 } else {
+    // Als de gebruiker zich al aangemeld heeft krijg hij dit bericht te zien
     echo "Je hebt je al aangemeld! Meld je af via de link in je mail.<br><a href='../view/dashboard.php'>Klik hier om terug te gaan!</a>";
 }
 

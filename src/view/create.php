@@ -1,11 +1,12 @@
- <?php 
+<?php 
+// Hiermee wordt er een connectie naar de database gemaakt.
 require '../config/config.php';
 
 // Data uit database halen om het te gaan gebruiken
-$stmt = $con->prepare('SELECT naam, level FROM gebruikers WHERE id = ?');
+$stmt = $con->prepare('SELECT level FROM gebruikers WHERE id = ?');
 $stmt->bind_param('i', $_SESSION['id']);
 $stmt->execute();
-$stmt->bind_result($naam, $level);
+$stmt->bind_result($level);
 $stmt->fetch();
 $stmt->close();
 
@@ -15,18 +16,17 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-// Als de gebruiker  admin rechten heeft wordt hij gestuurd naar de admin dashboard
-if($level != 0){
-    header('Location: admin-dashboard.php');
+// Als de gebruiker geen admin rechten heeft wordt hij terug gestuurd naar de normale dashboard
+if($level != 1){
+    header('Location: dashboard.php');
     exit;
 } 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>De Klapschaats ⛸!</title>
+<title>De Klapschaats ⛸!</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -51,24 +51,57 @@ if($level != 0){
         }
     </style>
 </head>
-
 <body class="bg">
-    <div class="grid min-h-screen place-items-center">
-        <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow-md">
-        
-            <h1 class="text-xl font-semibold">Welkom <span style="color: #a7c7e7"><?= $naam ?></span> bij <span style="color: #FAA0A0">De Klapschaats</span> ⛸!</h1>
-            
-            <!-- Buttons -->
-            <div class="flex gap-4">
-                <a href="dashboard.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white text-center uppercase shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none bg-pastel-blue">
-                    Tijdsloten
-                </a>
-                <a href="../controller/LogoutController.php" class="w-1/2 py-3 mt-6 font-medium tracking-widest text-white uppercase bg-pastel-blue shadow-lg text-center focus:outline-none hover:bg-gray-900 hover:shadow-none">
-                    Uitloggen
-                </a>
+
+    <!-- Aanmaak formulier -->
+    <form action="../controller/CreateController.php" method="post">
+        <div class="grid min-h-screen place-items-center">
+            <div class="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12 shadow-md">
+                <h1 class="text-xl font-semibold"><span style="color: #FAA0A0">De Klapschaats</span> ⛸, <span class="font-normal">vul hier jou gegevens in om verder te gaan!</span></h1>
+                <form class="mt-8" action="src/Controller/RegisterController.php" method="post">
+                    <span class="w-full">
+                        <label for="datum" class="block text-xs mt-4 font-semibold text-gray-600 uppercase">Datum</label>
+                        <input id="datum" type="date" name="datum" placeholder="26-03-2002" autocomplete="datum" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                    </span>
+                    <div class="flex justify-between mt-2 gap-3">
+                        <span class="w-1/2">
+                            <label for="van" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Van</label>
+                            <input id="van" type="time" name="van" placeholder="14:30" autocomplete="van" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                        </span>
+                        <span class="w-1/2">
+                            <label for="tot" class="block mt-4 text-xs font-semibold text-gray-600 uppercase">Tot</label>
+                            <input id="tot" type="time" name="tot" placeholder="16:00" min="09:00" max="21:00" autocomplete="tot" class="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner" required />
+                        </span>
+                    </div>
+                    <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+                        Aanmaken
+                    </button>
+                    <a href="admin-dashboard.php" class="flex justify-between inline-block mt-4 text-xs text-gray-500 cursor-pointer hover:text-black">Ga terug</a>
+                </form>
             </div>
         </div>
-    </div>
-</body>
+    <script>
+        $(function(){
+            // Hier wordt een datum aangemaakt van vandaag
+            var dtToday = new Date();
 
+            // Hier wordt er een maand aan toegevoegd
+            var month = dtToday.getMonth() + 1;
+            
+            // Hier wordt er naar gekeken welke dag het is
+            var day = dtToday.getDate();
+
+            // Hier wordt er naar gekeken welk jaar het is
+            var year = dtToday.getFullYear();
+
+            if(month < 10)
+                month = '0' + month.toString();
+            if(day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;    
+            $('#datum').attr('max', maxDate);
+        });
+    </script>
+</body>
 </html>

@@ -15,6 +15,7 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
+// Als de gebruiker  admin rechten heeft wordt hij gestuurd naar de admin dashboard
 if($level != 0){
     header('Location: AdminDashboard.php');
     exit;
@@ -57,6 +58,7 @@ if($level != 0){
         
             <h1 class="text-xl font-semibold">Welkom bij <span style="color: #FAA0A0">De Klapschaats</span> ⛸!</h1>
             
+            <!-- Overzicht tabel -->
             <table class="leading-normal w-full mt-4">
                         <thead>
                             <tr>
@@ -79,10 +81,13 @@ if($level != 0){
                         </thead>
                         <tbody>
                             <?php
+
+                                // Via een sql de data ophalen uit de database
                                 $sql = 'SELECT * FROM tijdsloten';
                                 $result = $con->query($sql);
                                 
                                 if ($result->num_rows > 0) {
+
                                     // Data uitlezen voor elke rij
                                     while($row = $result->fetch_assoc()) {
                                         echo "<tr>";
@@ -100,9 +105,11 @@ if($level != 0){
                                         echo "</tr>";
                                     }
                                 } else {
+                                    // Geen resultaten
                                     echo "0 results";
                                 }
-
+                                
+                                // Connectie sluiten
                                 $con->close();
                             ?>
                         </tbody>
