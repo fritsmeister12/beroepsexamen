@@ -98,7 +98,10 @@ if($level != 1){
 
                                         echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='text-gray-900 whitespace-no-wrap'>". $row["tot"] ."</p></td>";
 
-                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='whitespace-no-wrap font-bold'><a href='update.php?id=". $row['id'] ."' style='color: #FFBF00'>Aanpassen</a><br><a href='../controller/DeleteController.php?id=". $row['id'] ."' style='color: #FAA0A0'>Verwijderen</a></p></td>";
+                                        echo "<td class='px-5 py-5 border-b border-gray-200 bg-white text-sm'><p class='whitespace-no-wrap font-bold'>
+                                        <a href='show.php?id=". $row['id'] ."' style='color: green'>Overzicht</a><br>
+                                        <a href='../controller/DeleteController.php?id=". $row['id'] ."' style='color: #FAA0A0'>Verwijderen</a><br>
+                                        <a href='update.php?id=". $row['id'] ."' style='color: #FFBF00'>Aanpassen</a></p></td>";
 
                                         echo "</tr>";
                                     }

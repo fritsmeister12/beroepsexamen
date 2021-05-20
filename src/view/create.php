@@ -80,28 +80,5 @@ if($level != 1){
                 </form>
             </div>
         </div>
-    <script>
-        $(function(){
-            // Hier wordt een datum aangemaakt van vandaag
-            var dtToday = new Date();
-
-            // Hier wordt er een maand aan toegevoegd
-            var month = dtToday.getMonth() + 1;
-            
-            // Hier wordt er naar gekeken welke dag het is
-            var day = dtToday.getDate();
-
-            // Hier wordt er naar gekeken welk jaar het is
-            var year = dtToday.getFullYear();
-
-            if(month < 10)
-                month = '0' + month.toString();
-            if(day < 10)
-                day = '0' + day.toString();
-
-            var maxDate = year + '-' + month + '-' + day;    
-            $('#datum').attr('max', maxDate);
-        });
-    </script>
 </body>
 </html>

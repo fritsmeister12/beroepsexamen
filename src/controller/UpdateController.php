@@ -9,9 +9,10 @@ $tot = mysqli_real_escape_string($con, $_POST['tot']);
 $id = mysqli_real_escape_string($con, $_POST['id']);
 
 
-// Proberen de sql in de database toe te voegen
-// $sql = "INSERT INTO tijdsloten (id, datum, van, tot) VALUES (NULL, '$datum', '$van', '$tot')";
+// SQL query voorbereiden voordat hij gebruikt wordt
 $sql = "UPDATE tijdsloten SET datum = '$datum', van = '$van', tot = '$tot' WHERE tijdsloten.id = $id";
+
+// Proberen de sql in de database toe te voegen
 if (mysqli_query($con, $sql)) {
 
     // Hier wordt je terug gestuurd naar het beginscherm als het gelukt is
